@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+// use Learn\Dog;
+
 class LearnController extends Controller
 {
     public function index()
@@ -179,5 +181,29 @@ class LearnController extends Controller
 
         // 当前控制器自己的命名空间（就是顶部那行 App\Http\Controllers）
         echo "当前文件命名空间: " . (__NAMESPACE__ ?: '全局') . "<br>";
+    }
+
+    public function day5()
+    {
+        require_once app_path('Support/User.php');
+        $user = new \Learn\User("John", 20);
+        echo $user->name, "<br>";
+        echo $user->greet(), "<br>";
+        echo $user->getAge(), "<br>";
+
+        // echo $user->age, "<br>";
+    }
+
+    public function day6()
+    {
+
+        $dog = new \Learn\Dog("旺财");
+
+        $output = '';
+        $output .= "名字: " . $dog->name() . "\n";    // 继承自 Animal 的普通方法
+        $output .= "动作: " . $dog->move() . "\n";    // 实现了 Animal 的抽象方法
+        $output .= "叫声: " . $dog->speak() . "\n";   // 实现了 Speakable 接口的方法
+
+        return response($output)->header('Content-Type', 'text/plain');
     }
 }
