@@ -20,3 +20,9 @@ Route::get('/greeting/{name}', [PageController::class, 'greeting']);
 
 Route::get('/register',  [PageController::class, 'showRegister']);
 Route::post('/register', [PageController::class, 'doRegister']);
+
+Route::get('/login',  [PageController::class, 'showLogin'])->name('login');
+Route::post('/login', [PageController::class, 'doLogin']);
+Route::post('/logout',[PageController::class, 'logout']);
+Route::get('/dashboard', [PageController::class, 'showDashboard'])->middleware('auth');
+

@@ -31,6 +31,11 @@
                    style="width:100%;padding:8px;box-sizing:border-box;">
         </div>
         <div style="margin-bottom:12px;">
+            <label>邮箱</label><br>
+            <input type="email" name="email" value="{{ old('email') }}"
+                style="width:100%;padding:8px;box-sizing:border-box;">
+        </div>
+        <div style="margin-bottom:12px;">
             <label>密码</label><br>
             <input type="password" name="password"
                    style="width:100%;padding:8px;box-sizing:border-box;">
