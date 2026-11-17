@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LearnController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -26,3 +27,5 @@ Route::post('/login', [PageController::class, 'doLogin']);
 Route::post('/logout',[PageController::class, 'logout']);
 Route::get('/dashboard', [PageController::class, 'showDashboard'])->middleware('auth');
 
+Route::get('/admin/users', [UserController::class, 'index'])
+    ->middleware(['auth', 'role:admin']);
