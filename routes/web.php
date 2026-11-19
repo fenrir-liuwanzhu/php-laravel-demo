@@ -27,5 +27,9 @@ Route::post('/login', [PageController::class, 'doLogin']);
 Route::post('/logout',[PageController::class, 'logout']);
 Route::get('/dashboard', [PageController::class, 'showDashboard'])->middleware('auth');
 
-Route::get('/admin/users', [UserController::class, 'index'])
-    ->middleware(['auth', 'role:admin']);
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/admin/users', [UserController::class, 'index']);
+    Route::get('/admin/users/{user}/edit', [UserController::class, 'edit']);
+    Route::put('/admin/users/{user}', [UserController::class, 'update']);
+    Route::delete('/admin/users/{user}', [UserController::class, 'destroy']);
+});
