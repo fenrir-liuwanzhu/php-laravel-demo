@@ -28,6 +28,8 @@ Route::post('/logout', [PageController::class, 'logout']);
 Route::get('/dashboard', [PageController::class, 'showDashboard'])->middleware('auth');
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/admin/users/export', [UserController::class, 'export']);
+    Route::post('/admin/users/import', [UserController::class, 'import']);
     Route::get('/admin/users', [UserController::class, 'index']);
     Route::get('/admin/users/{user}/edit', [UserController::class, 'edit']);
     Route::put('/admin/users/{user}', [UserController::class, 'update']);
